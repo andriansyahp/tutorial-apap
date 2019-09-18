@@ -31,7 +31,7 @@ public class AgeController {
 			Optional<LocalDate> birthdate, Model model) {
 		return getHitungUmurPage(birthdate, model);
 	}
-	
+
 	@GetMapping(value="/hitung-umur/{birthdate}")
 	public String hitungUmurWithPathVariable(
 			@PathVariable(value="birthdate")
