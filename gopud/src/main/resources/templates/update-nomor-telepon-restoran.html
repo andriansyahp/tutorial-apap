@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title>Ubah Nomor Telepon Restoran</title>
+		
+	</head>
+	<body>
+		<div th:if="${namaResto != null}">
+		<h2 th:text="'Nomor telepon dengan nama '+ ${namaResto} + ' berhasil diubah.'"></h2>
+		</div>
+		<div th:unless="${namaResto != null}">
+			<h3>ID Restoran tidak dicantumkan, atau ID Restoran tidak ditemukan.</h3>
+		</div> 
+	</body>
+</html>
