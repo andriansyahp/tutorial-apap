@@ -2,6 +2,7 @@ package apap.tutorial.gopud.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,6 @@ import apap.tutorial.gopud.model.RestoranModel;
 @Service
 public class RestoranInMemoryService implements RestoranService {
 	private List<RestoranModel> listRestoran;
-
 
 	// Constructor 
 	public RestoranInMemoryService() {
@@ -28,39 +28,22 @@ public class RestoranInMemoryService implements RestoranService {
 	}
 
 	@Override
-	public RestoranModel getRestoranByIdRestoran(String idRestoran) {
-		RestoranModel foundRestoran= null;
-		for (RestoranModel restoran : listRestoran) {
-            if(restoran.getIdRestoran().matches(idRestoran)){
-                foundRestoran = restoran;
-            }
-        }
-		return foundRestoran;
-	}
-	
-	@Override
-	public String updateNomorTeleponByIdRestoran(String idRestoran, Integer nomorTelepon) {
-		String namaResto = "";
-		for (RestoranModel restoran : listRestoran) {
-            if(restoran.getIdRestoran().matches(idRestoran)){
-                restoran.setNomorTelepon(nomorTelepon);
-                namaResto = restoran.getNama();
-            }
-        }
-		return namaResto;
-	}
-	
-	@Override
-	public String deleteRestoranByIdRestoran(String idRestoran) {
-		String namaResto = "";
-		for (RestoranModel restoran : listRestoran) {
-            if(restoran.getIdRestoran().matches(idRestoran)){
-                namaResto = restoran.getNama();
-                listRestoran.remove(restoran);
-                return namaResto;
-            }
-        }
-		return namaResto;
+	public RestoranModel getRestoranByIdRestoran(Long idRestoran) {
+		for(int i = 0; i < listRestoran.size(); i++) {
+			if (listRestoran.get(i).getIdRestoran().equals(idRestoran)) {
+				return listRestoran.get(i);
+			}
+		}
+		return null;
 	}
 
+	@Override
+	public RestoranModel changeRestoran(RestoranModel restoranModel) {
+		return null;
+	}
+
+	@Override
+	public void deleteRestoran(Long idRestoran) {
+
+	}
 }
