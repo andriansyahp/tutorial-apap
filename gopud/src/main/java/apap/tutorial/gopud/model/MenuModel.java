@@ -12,11 +12,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Entity
-@Table(name = "menu")
+@Table(name="menu")
 public class MenuModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     @Size(max = 20)
@@ -37,11 +37,11 @@ public class MenuModel implements Serializable {
     @Column(name = "deskripsi", nullable = false)
     private String deskripsi;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

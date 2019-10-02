@@ -12,7 +12,6 @@ import apap.tutorial.gopud.model.RestoranModel;
 public class RestoranInMemoryService implements RestoranService {
 	private List<RestoranModel> listRestoran;
 
-
 	// Constructor 
 	public RestoranInMemoryService() {
 		listRestoran = new ArrayList<>();
@@ -29,18 +28,22 @@ public class RestoranInMemoryService implements RestoranService {
 	}
 
 	@Override
-	public Optional<RestoranModel> getRestoranByIdRestoran(Long idRestoran) {
-		RestoranModel foundRestoran= null;
-		for (RestoranModel restoran : listRestoran) {
-            if(restoran.getIdRestoran() == idRestoran){
-                foundRestoran = restoran;
-            }
-        }
-		return Optional.ofNullable(foundRestoran);
+	public RestoranModel getRestoranByIdRestoran(Long idRestoran) {
+		for(int i = 0; i < listRestoran.size(); i++) {
+			if (listRestoran.get(i).getIdRestoran().equals(idRestoran)) {
+				return listRestoran.get(i);
+			}
+		}
+		return null;
 	}
 
 	@Override
 	public RestoranModel changeRestoran(RestoranModel restoranModel) {
 		return null;
+	}
+
+	@Override
+	public void deleteRestoran(Long idRestoran) {
+
 	}
 }

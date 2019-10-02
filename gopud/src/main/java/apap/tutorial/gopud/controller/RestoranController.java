@@ -1,6 +1,7 @@
 package apap.tutorial.gopud.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import apap.tutorial.gopud.model.MenuModel;
@@ -50,117 +51,71 @@ public class RestoranController {
 			// Request Parameter untuk di-pass
 			@RequestParam(value="idRestoran") Long idRestoran, Model model){
 		
-//		if(idRestoran != null && idRestoran != "") {
-			// Mengambil objek RestoranModel yang dituju 
-//			RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-//			if(restoran != null) {
-				// Add model restoran ke "resto" untuk di-render
-//				model.addAttribute("resto", restoran);
-//			}
-//		} else {
-//			model.addAttribute("resto", null);
-//		}
 		// Mengambil objek RestoranModel yang dituju
-		RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
+		try {
+			RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
 
-		// Add model restoran ke "resto" untuk di-render
-		model.addAttribute("resto", restoran);
+			// Add model restoran ke "resto" untuk di-render
+			model.addAttribute("resto", restoran);
 
-		List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
-		model.addAttribute("menuList", menuList);
-
+			List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+			model.addAttribute("menuList", menuList);
+		} catch (NoSuchElementException nullException){
+			return "view-restoran-error";
+		}
 		return "view-restoran";
+	}
+
+	//URL Mapping viewAll
+	@RequestMapping(value="/restoran/view-all")
+	public String viewAll(Model model) {
+		//Mengambil data semua objek restoran yang ada
+		List<RestoranModel> restoranList = restoranService.getRestoranList();
+		//Add objek restoran ke "restoranList" untuk dirender
+		model.addAttribute("restoranList", restoranList);
+		//Return view template view-all-store
+		return "view-all-restoran";
 	}
 
 	// API yang digunakan untuk menuju halaman form change restoran
 	@RequestMapping(value = "restoran/change/{idRestoran}", method = RequestMethod.GET)
 	public String changeRestoranFormPage(@PathVariable Long idRestoran, Model model){
 		// Mengambil existing data restoran
-		RestoranModel existingRestoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-		model.addAttribute("restoran", existingRestoran);
-		return "form-change-restoran";
+		try {
+			RestoranModel existingRestoran = restoranService.getRestoranByIdRestoran(idRestoran);
+			model.addAttribute("restoran", existingRestoran);
+			return "form-change-restoran";
+		} catch (NoSuchElementException e) {
+			model.addAttribute("idRestoran", idRestoran);
+			return "change-restoran-error";
+		}
 	}
 
 	// API yang digunakan untuk submit form change restoran
 	@RequestMapping(value = "restoran/change/{idRestoran}", method = RequestMethod.POST)
 	public String changeRestoranFormSubmit(@PathVariable Long idRestoran, @ModelAttribute RestoranModel restoran, Model model){
-		RestoranModel newRestoranData = restoranService.changeRestoran(restoran);
-		model.addAttribute("restoran", newRestoranData);
+		try {
+			RestoranModel newRestoranData = restoranService.changeRestoran(restoran);
+			model.addAttribute("restoran", newRestoranData);
+		} catch (NoSuchElementException e){
+			model.addAttribute("idRestoran", idRestoran);
+			return "change-restoran-error";
+		}
 		return "change-restoran";
 	}
-	
-//	//URL mapping view dengan Path Variable
-//	@RequestMapping("/restoran/view/id-restoran/{idRestoran}")
-//	public String viewWithPathVariable(
-//			@PathVariable(value="idRestoran") String idRestoran, Model model) {
-//
-//		if(idRestoran != null && idRestoran != "") {
-//			// Mengambil objek RestoranModel yang dituju
-//			RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
-//			if(restoran != null) {
-//				// Add model restoran ke "resto" untuk di-render
-//				model.addAttribute("resto", restoran);
-//			}
-//		} else {
-//			model.addAttribute("resto", null);
-//		}
-//		return "view-restoran";
-//	}
-	
-	//URL mapping update nomorTelepon Restoran dengan Path Variable
-//	@RequestMapping("/restoran/update/id-restoran/{idResto}/nomor-telepon/{nomorTeleponResto}")
-//	public String updateNomorTelepon(
-//			@PathVariable(value="idResto") String idRestoran,
-//			@PathVariable(value="nomorTeleponResto") String nomorTelepon,
-//			Model model){
-//
-//		// Konversi String ke Integer
-//		Integer newNomorTelepon = Integer.valueOf(nomorTelepon);
-//		if(idRestoran != null && idRestoran != "") {
-//			// Meng-update nomor Telepon
-//			String namaRestoran = restoranService.updateNomorTeleponByIdRestoran(idRestoran, newNomorTelepon);
-//			if(namaRestoran != "") {
-//				model.addAttribute("namaResto", namaRestoran);
-//			}
-//		} else {
-//			model.addAttribute("namaResto", null);
-//		}
-//		String namaRestoran = restoranService.updateNomorTeleponByIdRestoran(idRestoran, newNomorTelepon);
 
-//		model.addAttribute("namaResto", namaRestoran);
-			
-		// Return view template
-//		return "update-nomor-telepon-restoran";
-	//}
-	
-	//URL mapping delete Restoran dengan Path Variable
-//	@RequestMapping("/restoran/delete/id/{idResto}")
-//	public String deleteRestoranByIdRestoran(
-//			@PathVariable(value="idResto") String idRestoran, Model model) {
-//
-//		if(idRestoran != null && idRestoran != "") {
-//			// Mengambil nama dari objek RestoranModel yang ingin dihapus
-//			String namaRestoran = restoranService.deleteRestoranByIdRestoran(idRestoran);
-//			if(namaRestoran != "") {
-//				model.addAttribute("namaResto", namaRestoran);
-//			}
-//		} else {
-//			model.addAttribute("namaResto", null);
-//		}
-//		return "delete-restoran";
-//	}
-//
-//	//URL mapping viewAll
-//	@RequestMapping("/restoran/viewall")
-//	public String viewall (Model model){
-//
-//		// Mengambil semua objek RestoranModel yang ada
-//		List<RestoranModel> listRestoran = restoranService.getRestoranList();
-//
-//		// Add model restoran ke "resto" untuk di-render
-//		model.addAttribute("restoList", listRestoran);
-//
-//		// Return view template
-//		return "viewall-restoran";
-//	}
+	//URL mapping delete
+	@RequestMapping("/restoran/delete/id/{idRestoran}")
+	public String delete(@PathVariable("idRestoran") Long idRestoran, Model model) {
+		try{
+			restoranService.deleteRestoran(idRestoran);
+		}catch (NoSuchElementException e){
+			model.addAttribute("errorMessage", "Id " +  idRestoran.toString() + " tidak ditemukan");
+			return "delete-restoran-error";
+		}catch (UnsupportedOperationException e){
+			model.addAttribute("errorMessage", "Tidak berhasil dihapus karena restoran memiliki menu!");
+			return "delete-restoran-error";
+		}
+		return "delete-restoran";
+	}
 }

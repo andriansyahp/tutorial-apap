@@ -13,8 +13,10 @@ public interface RestoranService {
 	List<RestoranModel> getRestoranList();
 	
 	// Method untuk mendapatkan data sebuah Restoran berdasarkan idRestoran
-	Optional <RestoranModel> getRestoranByIdRestoran(Long idRestoran);
+	RestoranModel getRestoranByIdRestoran(Long idRestoran);
 	
 	RestoranModel changeRestoran(RestoranModel restoranModel);
+
+	void deleteRestoran(Long idRestoran);
 }
 

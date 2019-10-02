@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,12 +23,17 @@ public class RestoranServiceImpl implements RestoranService{
 
     @Override
     public List<RestoranModel> getRestoranList(){
-        return restoranDb.findAll();
+        return restoranDb.findAllByOrderByNamaAsc();
     }
 
     @Override
-    public Optional<RestoranModel> getRestoranByIdRestoran(Long idRestoran){
-        return restoranDb.findByIdRestoran(idRestoran);
+    public RestoranModel getRestoranByIdRestoran(Long idRestoran) {
+        try{
+            Optional<RestoranModel> restoran = restoranDb.findByIdRestoran(idRestoran);
+            return restoran.get();
+        }catch (NoSuchElementException e) {
+            throw e;
+        }
     }
 
     @Override
@@ -43,6 +49,17 @@ public class RestoranServiceImpl implements RestoranService{
             return targetrestoran;
         } catch (NullPointerException nullException) {
             return null;
+        }
+    }
+
+    @Override
+    public void deleteRestoran(Long idRestoran) {
+        RestoranModel restoran = getRestoranByIdRestoran(idRestoran);
+        if(restoran.getListMenu().size()==0){
+            restoranDb.delete(restoran);
+        }else{
+            UnsupportedOperationException unsupportedOperationException = new UnsupportedOperationException();
+            throw unsupportedOperationException;
         }
     }
 }
