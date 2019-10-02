@@ -52,17 +52,16 @@ public class RestoranController {
 			@RequestParam(value="idRestoran") Long idRestoran, Model model){
 		
 		// Mengambil objek RestoranModel yang dituju
-		try {
-			RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
+		RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
 
-			// Add model restoran ke "resto" untuk di-render
-			model.addAttribute("resto", restoran);
+		List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+		restoran.setListMenu(menuList);
 
-			List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
-			model.addAttribute("menuList", menuList);
-		} catch (NoSuchElementException nullException){
-			return "view-restoran-error";
-		}
+		// Add model restoran ke "resto" untuk di-render
+		model.addAttribute("resto", restoran);
+
+//		List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+//		model.addAttribute("menuList", menuList);
 		return "view-restoran";
 	}
 

@@ -51,9 +51,9 @@ public class MenuServiceImpl implements MenuService{
     }
 
     @Override
-    public void deleteMenu(Long idMenu) {
-        MenuModel menu = findById(idMenu);
-        menuDb.deleteById(idMenu);
+    public void deleteMenu(MenuModel menu) {
+//        MenuModel menu = findById(idMenu);
+        menuDb.delete(menu);
     }
 
 }

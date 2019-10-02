@@ -24,7 +24,6 @@ public class MenuModel implements Serializable {
     private String nama;
 
     @NotNull
-    @Size(max = 30)
     @Column(name = "harga", nullable = false)
     private BigInteger harga;
 

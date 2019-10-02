@@ -46,3 +46,42 @@
 ### What I did not understand
 - [ ] Apakah ada cara untuk menyeragamkan semua halaman HTML agar bisa dibuat dengan *template* agar lebih sederhana dan terstruktur serta terorganisir?
 
+## Tutorial 3
+### What I have learned today
+1. Pada class MenuDb, terdapat method findByRestoranIdRestoran, apakah kegunaan dari method tersebut?
+    - Method findByRestoranIdRestoran pada MenuDb akan diimplementasikan di MenuService untuk melakukan pencarian Restoran berdasarkan ID yang diberikan.
+2. Pada class RestoranController, jelaskan perbedaan method addRestoranFormPage dan addRestoranSubmit?
+    - Method addRestoranFormPage berisi form untuk mengisi data pembuatan restoran, sedangkan method addRestoranSubmit menyimpan form yang telah diisi ke dalam database.
+3. Jelaskan apa kegunaan dari JPA Repository?
+    - JPA Repository digunakan sebagai jembatan pemetaan dari objek pada Java dengan database yang disimpan.
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara RestoranModel dan MenuModel dibuat?
+    - ![Relasi Restoran dengan Menu berdasarkan soal.](https://i.ibb.co/kSH9k0d/relation-menu-restoran.png)
+        + Relasi Restoran dengan Menu berdasarkan soal.
+    - ![Implementasi relasi Restoran yang dapat memiliki banyak menu.](https://i.ibb.co/BjLg06v/restoran-relation.png)
+        + Implementasi relasi Restoran yang dapat memiliki banyak menu.
+    - ![Implementasi relasi Many-to-One dari Menu ke Restoran.](https://i.ibb.co/QXLjH3z/menu-relation.png)
+        + Implementasi relasi Many-to-One dari Menu ke Restoran.
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER.
+    - FetchType.LAZY hanya mengambil ketika dibutuhkan, sedangkan FetchType.EAGER mengambil seluruhnya secara langsung. CascadeType.ALL artinya menerapkan semua perubahan terhadap entity terkait.
+
+### What I did not understand
+- [ ] 
+
+## Tutorial 4
+### What I have learned today
+1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 2
+    - Latihan nomor 2 berkaitan dengan sebuah fragment header yang dinamis. Yang saya lakukan adalah:
+        + ![Fragment](https://i.ibb.co/3pZ6nTY/dynamic-navbar.png)
+            - Menambahkan potongan kode seperti yang di-highlight pada gambar di atas ke dalam fragment.
+        + ![View](https://i.ibb.co/2j5Pkj7/dynamic-navbar-2.png)
+            Setelah itu, menambahkan id ke dalam tag title di semua view, salah satu contohnya seperti pada gambar di atas yaitu di view Add Menu.
+2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda menyelesaikan latihan nomor 2
+    - 
+3. Jelaskan perbedaan th:include dan th:replace
+    - th:include akan meng-include konten dari fragment ke dalam tag terkait, sedangkan th:replace akan mengganti (replace) keseluruhan tag dengan yang ada di fragment. 
+4. Jelaskan bagaimana penggunaan th:object beserta tujuannya
+    - th:object digunakan untuk menentukan objek berisi data yang akan diisikan ke dalam form untuk kemudian disimpan ke dalam database.
+
+### What I did not understand
+- [ ] 
+
