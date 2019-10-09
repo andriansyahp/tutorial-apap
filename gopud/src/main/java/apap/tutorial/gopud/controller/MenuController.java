@@ -71,16 +71,24 @@ public class MenuController {
         return "change-menu";
     }
 
-    @RequestMapping(value="menu/delete/id/{idMenu}", method = RequestMethod.GET)
-    public String deleteMenuFormPage(@PathVariable Long idMenu, @ModelAttribute MenuModel menu, Model model){
-        try{
-            menuService.deleteMenu(idMenu);
-        }catch (NoSuchElementException e){
-            model.addAttribute("errorMessage", "Id tidak ditemukan");
-            return "delete-menu-error";
+    @RequestMapping(value="menu/delete", method = RequestMethod.POST)
+    public String delete(@ModelAttribute RestoranModel restoran, Model model){
+        for (MenuModel menu : restoran.getListMenu()) {
+            menuService.deleteMenu(menu);
         }
         return "delete-menu";
     }
+
+//    @RequestMapping(value="menu/delete/id/{idMenu}", method = RequestMethod.GET)
+//    public String deleteMenuFormPage(@PathVariable Long idMenu, @ModelAttribute MenuModel menu, Model model){
+//        try{
+//            menuService.deleteMenu(idMenu);
+//        }catch (NoSuchElementException e){
+//            model.addAttribute("errorMessage", "Id tidak ditemukan");
+//            return "delete-menu-error";
+//        }
+//        return "delete-menu";
+//    }
 
 
 }

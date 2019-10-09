@@ -13,5 +13,5 @@ public interface MenuService {
 
     MenuModel changeRestoran(MenuModel restoran);
 
-    void deleteMenu(Long idMenu);
+    void deleteMenu(MenuModel menu);
 }
