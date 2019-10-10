@@ -85,3 +85,28 @@
 ### What I did not understand
 - [ ] 
 
+## Tutorial 5
+### Latihan
+1. *Coverage* sesudah *testing*:
+    - ![Latihan 1](https://i.ibb.co/CmfSGRv/lat-1-after.jpg)
+2. *Coverage* sesudah *testing*
+    - ![Latihan 2](https://i.ibb.co/QMBbMjT/lat-2-after.jpg)
+
+### What I have learned today
+1. Jelaskan bagian mana saja dari test yang dibuat pada latihan no 2 adalah given, when, dan and then.
+    - **_Given_**: Mengatur pembuatan restoran *dummy* dan menu-menu *dummy* untuk restoran tersebut, kemudian mengatur *return* dari setiap aktivitas *service* di *database*.
+    - **_When_**: Membuka *URL* untuk *View Restoran* dengan ID 1 (`mockMvc.perform(get("/restoran/view?idRestoran=1"))`).
+    - **_Then_**: Ekspektasi hasil operasi yang dilakukan pada **_When_** (dicek melalui setiap baris `.andExpect()`).
+        
+2. Jelaskan perbedaan line coverage dan logic coverage.
+    - *Line Coverage* mengecek apakah setiap baris pernah dijalankan setidaknya sekali, sedangkan *Logic Coverage* mengecek baris *logical branching* seperti *if* dan *else*.
+
+3. Pada keadaan ideal, apa yang seharusnya dibuat terlebih dahulu, code atau unit test? Mengapa seperti itu? Apa akibatnya jika urutannya dibalik, adakah risiko tak terlihat yang mungkin terjadi?
+    - *Unit testing* berguna untuk mengecek fungsionalitas per komponen, sedangkan *code testing* akan menguji program secara keseluruhan. Hal ini menyebabkan *unit testing* umumnya harus diprioritaskan, agar *error* bisa ditangkap lebih awal (pengecekan komponen) dibanding ketika dicek setelah semua selesai.
+
+4. [Bonus] Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari perhitungan code coverage.
+    - *Main class Spring* di-*exclude* karena *Main class Spring* tidak dijalankan dan diperhitungkan *coverage*-nya, sehingga akan merusak hasil penghitungan *coverage* secara keseluruhan. Faktor lain suatu *class* di-*exclude* antara lain karena *class* tersebut tidak memiliki *coverage* yang signifikan, *config file*, atau pun *built-in file*.
+
+### What I did not understand
+- [ ] 
+

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface RestoranDB extends JpaRepository<RestoranModel, Long> {
-    Optional<RestoranModel> findByIdRestoran(Long idRestoran);
+    RestoranModel findByIdRestoran(Long idRestoran);
     List<RestoranModel> findAllByOrderByNamaAsc();
 }
