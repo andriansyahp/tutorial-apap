@@ -23,14 +23,14 @@ public class RestoranServiceImpl implements RestoranService{
 
     @Override
     public List<RestoranModel> getRestoranList(){
-        return restoranDb.findAllByOrderByNamaAsc();
+        return restoranDb.findAll();
     }
 
     @Override
     public RestoranModel getRestoranByIdRestoran(Long idRestoran) {
         try{
-            Optional<RestoranModel> restoran = restoranDb.findByIdRestoran(idRestoran);
-            return restoran.get();
+            RestoranModel restoran = restoranDb.findByIdRestoran(idRestoran);
+            return restoran;
         }catch (NoSuchElementException e) {
             throw e;
         }

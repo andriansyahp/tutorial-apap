@@ -44,17 +44,17 @@ public class RestoranController {
 		model.addAttribute("namaResto", restoran.getNama());
 		return "add-restoran";
 	}
-	
+
 	//URL mapping view
 	@RequestMapping(value = "/restoran/view", method = RequestMethod.GET)
 	public String viewWithRequestParam(
 			// Request Parameter untuk di-pass
 			@RequestParam(value="idRestoran") Long idRestoran, Model model){
-		
+
 		// Mengambil objek RestoranModel yang dituju
 		RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran);
 
-		List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
+		List<MenuModel> menuList = menuService.getListMenuOrderByHargaAsc(restoran.getIdRestoran());
 		restoran.setListMenu(menuList);
 
 		// Add model restoran ke "resto" untuk di-render

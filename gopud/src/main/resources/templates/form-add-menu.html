@@ -10,7 +10,8 @@
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="container-fluid">
         <h3> Tambah Menu </h3>
-        <form th:action="@{/menu/add}" th:object="${menu}" method="POST">
+        <form th:action="@{'/menu/add/' + ${resto.idRestoran}}" th:object="${resto}" method="POST">
+            <input type="hidden" th:field="*{idRestoran}"/>
             <table>
                 <thead>
                 <tr>
@@ -18,34 +19,30 @@
                     <th>Deskripsi</th>
                     <th>Harga</th>
                     <th>Durasi Masak (menit)</th>
-                    <th><input type="button" value="Add row" class="btn btn-primary"/></th>
+                    <th><button type="submit" name="addRow" class="btn btn-primary">Add Row</button></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="menu, iterationStatus : *{listMenu}">
                     <td>
-                        <input type="text" name="nama"/>
+                        <input type="text" th:field="*{listMenu[__${iterationStatus.index}__].nama}"/>
                     </td>
                     <td>
-                        <input type="text" name="deskripsi"/>
+                        <input type="text" th:field="*{listMenu[__${iterationStatus.index}__].deskripsi}"/>
                     </td>
                     <td>
-                        <input type="number" name="harga"/>
+                        <input type="number" th:field="*{listMenu[__${iterationStatus.index}__].harga}"/>
                     </td>
                     <td>
-                        <input type="number" name="durasiMasak"/>
+                        <input type="number" th:field="*{listMenu[__${iterationStatus.index}__].durasiMasak}"/>
                     </td>
                     <td>
-                        <input type="button" value="Hapus" class="btn btn-danger"/>
-<!--                        <input type="button" th:field="*{listMenu}" th:value="Hapus"/>-->
-<!--                        <label th:for="${#ids.prev('listMenu')}">Hapus</label>-->
+                        <button class="btn btn-sm btn-danger" name="deleteRow" type="submit" th:value="${iterationStatus.index}" >Hapus</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-            <input type="hidden" th:field="*{restoran}">
+            <button type="submit" class="btn btn-primary" name="save">Submit</button>
         </form>
     </div>
 
