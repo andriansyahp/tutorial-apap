@@ -25,7 +25,7 @@ public class RestoranRestServiceImpl implements RestoranRestService{
     private RestoranDB restoranDb;
     
     public RestoranRestServiceImpl(WebClient.Builder webClientBuilder) {
-        this.webClient=webClientBuilder.baseUrl(Setting.restoranUrl).build();
+        this.webClient=webClientBuilder.baseUrl(Setting.demoUrl).build();
     }
 
     @Override
@@ -83,5 +83,14 @@ public class RestoranRestServiceImpl implements RestoranRestService{
                 .syncBody(data)
                 .retrieve()
                 .bodyToMono(RestoranDetail.class);
+    }
+
+    @Override
+    public Mono<String> getChefDetail(String nama) {
+        return this.webClient.get().uri(uriBuilder -> uriBuilder
+                .queryParam("chef", nama)
+                .build())
+                .retrieve()
+                .bodyToMono(String.class);
     }
 }

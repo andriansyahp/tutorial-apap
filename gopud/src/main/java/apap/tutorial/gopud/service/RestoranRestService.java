@@ -20,4 +20,6 @@ public interface RestoranRestService {
     Mono<String> getStatus(Long idRestoran);
 
     Mono<RestoranDetail> postStatus();
+
+    Mono<String> getChefDetail(String nama);
 }

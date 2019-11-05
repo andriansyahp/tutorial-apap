@@ -89,4 +89,11 @@ public class RestoranRestController {
     private Mono<RestoranDetail> postStatus() {
         return restoranRestService.postStatus();
     }
+
+    @GetMapping("/restoran")
+    private Mono<String> getChef(
+            @RequestParam("chef") String nama
+    ) {
+        return restoranRestService.getChefDetail(nama);
+    }
 }
