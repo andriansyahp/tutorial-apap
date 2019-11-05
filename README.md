@@ -110,3 +110,21 @@
 ### What I did not understand
 - [ ] 
 
+## Tutorial 6
+### What I have learned today
+1. Apa itu Postman? Apa kegunaan dari Postman?
+    - Postman adalah sebuah *API client* yang membantu *developer* dalam proses pembuatan, penggunaan bersama (*sharing*), melakukan *testing* serta membuat dokumentasi API. Postman digunakan untuk eksekusi API dan memungkinkan *developer* menyimpan pekerjaannya mengenai API tersebut sehingga dapat digunakan secara berulang kali tanpa harus mengingat secara rinci *endpoint*, *header*, *API key* dan lainnya.
+
+    Sumber: [https://www.blazemeter.com/blog/how-use-postman-manage-and-execute-your-apis/] (https://www.blazemeter.com/blog/how-use-postman-manage-and-execute-your-apis/)
+        
+2. Apa kegunaan dari *annotation* '@JsonIgnoreProperties'?
+    - Anotasi `@JsonIgnoreProperties` adalah anotasi pada level kelas (*class-level*) dimana kita dapat mengecualikan (*exclude*) properti yang secara eksplisit dinyatakan dalam bentuk *list of strings*.
+
+    Sumber: [http://www.davismol.net/2015/03/10/jackson-json-difference-between-jsonignore-and-jsonignoreproperties-annotations/](http://www.davismol.net/2015/03/10/jackson-json-difference-between-jsonignore-and-jsonignoreproperties-annotations/)
+
+3. Apa itu `ResponseEntity` dan apa kegunaannya?
+    - `ResponseEntity` merupakan representasi dari *HTTP response* secara keseluruhan, yaitu *status code*, *header*, dan *body*. Dengan `ResponseEntity` kita dapat mengontrol seluruh komponen yang ada dalam *HTTP Response* seperti yang sudah disebutkan.
+
+### What I did not understand
+- [ ] 
+

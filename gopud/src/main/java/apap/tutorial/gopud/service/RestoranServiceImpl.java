@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,8 +16,9 @@ public class RestoranServiceImpl implements RestoranService{
     private RestoranDB restoranDb;
 
     @Override
-    public void addRestoran(RestoranModel restoran){
+    public RestoranModel addRestoran(RestoranModel restoran){
         restoranDb.save(restoran);
+        return restoran;
     }
 
     @Override
