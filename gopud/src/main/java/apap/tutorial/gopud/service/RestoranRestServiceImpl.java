@@ -25,7 +25,8 @@ public class RestoranRestServiceImpl implements RestoranRestService{
     private RestoranDB restoranDb;
     
     public RestoranRestServiceImpl(WebClient.Builder webClientBuilder) {
-        this.webClient=webClientBuilder.baseUrl(Setting.demoUrl).build();
+//        this.webClient=webClientBuilder.baseUrl(Setting.demoUrl).build();
+        this.webClient=webClientBuilder.baseUrl(Setting.restoranUrl).build();
     }
 
     @Override
