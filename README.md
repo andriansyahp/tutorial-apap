@@ -128,3 +128,20 @@
 ### What I did not understand
 - [ ] 
 
+## Tutorial 7
+### What I have learned today
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+    - Otentikasi: proses memastikan bahwa yang mengakses akun memang benar pemilik akunnya. Pada tutorial ini, otentikasi dilakukan di tahap login.
+    - Otorisasi: hak akses yang dimiliki user terotentikasi untuk menggunakan aplikasi. Pada tutorial ini, otorisasi dilakukan salah satunya dengan membatasi akses fitur Tambah User hanya untuk User dengan Role Merchant.
+        
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+    - BCryptPasswordEncoder merupakan metode enkripsi password User yang disimpan dalam database. BCryptPasswordEncoder akan menghasilkan bentuk hash dari string password yang dimasukkan User menggunakan algoritma BCrypt. Selain itu, pada BCryptPasswordEncoder juga dapat dilakukan hal lain seperti mencocokkan password yang bersifat raw terhadap password yang tersimpan dalam database, dan lainnya.
+
+3. Jelaskan secara singkat apa itu UUID dan mengapa kita memakai UUID di UserModel.java?
+    - UUID atau Universal Unique Identier adalah sebuah identifier untuk setiap objek suatu class yang bersifat unik satu dengan lainnya. UserModel.java menggunakan UUID untuk membuat setiap User memiliki identifier unique tersendiri.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+    - RoleServiceImpl.java hanya digunakan untuk operasi dalam database Role, sedangkan UserDetailsServiceImpl.java merupakan bentuk implementasi dari interface UserDetailsService.java dimana di kelas ini kita dapat menggunakan method-method yang sudah didefinisikan dalam interface tersebut. Dengan begitu, RoleServiceImpl.java akan fokus untuk mengolah data Role, sedangkan UserDetailsServiceImpl.java akan berguna untuk hal-hal yang lebih general.
+
+### What I did not understand
+- [ ] 
