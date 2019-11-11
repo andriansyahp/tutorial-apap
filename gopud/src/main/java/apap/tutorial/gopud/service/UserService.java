@@ -10,4 +10,5 @@ public interface UserService {
     boolean checkPasswordValidity(String checkedString);
     boolean checkNewPasswordAgaintConfirmationPassword(String newPassword, String confirmPassword);
     UserModel updatePassword(UserModel user, String newPassword);
+    boolean checkUsernameAgainstSavedDatabase(String username);
 }

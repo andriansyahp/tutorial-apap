@@ -23,13 +23,28 @@ public class UserController {
     private RoleService roleService;
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    private String addUserSubmit(@ModelAttribute UserModel user, Model model) {
-        boolean passwordIsValid = userService.checkPasswordValidity(user.getPassword());
+    private String addUserSubmit(
+            @ModelAttribute UserModel user,
+            @RequestParam("username") String username,
+            @RequestParam("password") String newPassword,
+            @RequestParam("confirmation") String confirmPassword,
+            Model model
+    ) {
         model.addAttribute("listRole", roleService.findAll());
-        if (!passwordIsValid){
-            model.addAttribute("invalidPass", "Password is invalid");
+        boolean usernameIsNotAvailable = userService.checkUsernameAgainstSavedDatabase(username);
+        boolean newPasswordIsValid = userService.checkPasswordValidity(newPassword);
+        boolean mismatchedNewPassword = userService.checkNewPasswordAgaintConfirmationPassword(newPassword, confirmPassword);
+        if (usernameIsNotAvailable) {
+            model.addAttribute("invalidPass", "Username is taken. Try another one.");
+            return "home";
+        } if (!newPasswordIsValid){
+            model.addAttribute("invalidPass", "New password does not follow the rules for inclusion of number and letter with more than 8 characters");
+            return "home";
+        } if (mismatchedNewPassword){
+            model.addAttribute("invalidPass", "Confirmed password and New password is different");
             return "home";
         }
+
         model.addAttribute("invalidPass", null);
         userService.addUser(user);
         return "redirect:/";

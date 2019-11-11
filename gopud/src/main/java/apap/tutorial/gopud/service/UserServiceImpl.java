@@ -47,11 +47,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkPasswordValidity(String checkedString) {
         return checkedString.matches("^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$") &&
-                checkedString.length()>=8;
+                checkedString.length()>=10;
     }
 
     @Override
     public boolean checkNewPasswordAgaintConfirmationPassword(String newPassword, String confirmPassword){
         return !newPassword.equals(confirmPassword);
+    }
+
+    @Override
+    public boolean checkUsernameAgainstSavedDatabase(String username){
+        UserModel foundUser = getUserByUsername(username);
+        return foundUser != null;
     }
 }
