@@ -145,3 +145,33 @@
 
 ### What I did not understand
 - [ ] 
+
+## Tutorial 8
+### What I have learned today
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot
+sebagai ilustrasi dari apa yang Anda jelaskan.
+- Latihan 1: Menghilangkan *checkbox* di bagian '*Our Menu*'
+    + Untuk latihan ini, karena *checkbox* di '*Our Menu*' sedangkan harus tetap ada di '*My Favorite*', maka artinya harus dibedakan antara '*Our Menu*' dengan '*My Favorite*'. Maka dari itu, pada `App.js`, saya menambahkan lagi sebuah *boolean attribute* '*isFav*' untuk menandakan suatu *List* merupakan bagian '*My Favorite*' atau bukan. 
+    + ![Latihan 1 - App.js](https://i.ibb.co/mGT3Cyp/lat1-appjs.png)
+    + Setelah itu, di `List.js` saya menambahkan *argument* '*isFav*' yang didapat dari `App.js`.
+    + ![Latihan 1 - List.js](https://i.ibb.co/pK5B4dy/lat1-listjs.png)
+    + Lalu, di `Item.js`, di bagian '*props*' saya menambahkan '*isFav*'. Terakhir, untuk membuat *checkbox* terlihat atau tidak, saya mengubah *type* dari *input* sesuai kondisi '*isFav*'.
+    + ![Latihan 1 - Item.js](https://i.ibb.co/hfxWkdY/lat1-itemjs.png)
+- Latihan 2: Membuat bagian di '*Our Menu*' hanya berfungsi untuk *add*
+    + Untuk latihan ini, sama seperti latihan 1 di atas, saya membedakan fungsi *handler* masing-masing untuk '*Our Menu*' dan '*My Favorite*' di `App.js`. Untuk '*Our Menu*', *handler* tidak melakukan *splice* jika *item* sudah ditambahkan ke '*My Favorite*'.
+    + ![Latihan 2 - App.js](https://i.ibb.co/yNFGhQK/lat2-appjs.png)
+- Latihan 3: Membuat *toggle* untuk *show/hide 'My Favorite'*.
+    + Untuk latihan ini, pertama saya menambahkan sebuah *boolean attribute* '*toggleFav*' dalam '*state*' untuk *tracking* status dari *toggle* di `App.js`. Selain itu saya juga membuat *handler* tambahan untuk *toggle* yang akan dibuat.
+    + ![Latihan 3 - App.js](https://i.ibb.co/BttwqyW/lat3-handle-Change.png)
+    + Kemudian saya membuat *checkbox* untuk *toggle* *hide/show* dari '*My Favorite*'.
+    + ![Latihan 3 - App.js](https://i.ibb.co/mb3wcgy/lat3-checkbox.png)
+    + Terakhir, saya menambahkan *ternary operation* untuk mengecek *toggle hide/show*.
+    + ![Latihan 3 - App.js](https://i.ibb.co/P4J80Nw/lat3-favs.png)
+- Latihan 4: Menampilkan EmptyState jika '*My Favorite*' kosong.
+    + Untuk latihan ini, saya membuat *Component* baru yaitu `EmptyState.js`.
+    + ![Latihan 4 - EmptyState.js](https://i.ibb.co/DfFm928/lat4-emptystatejs.png)
+    + Kemudian, di `App.js`, pada bagian untuk menampilkan '*My Favorite*' saya menambahkan *ternary operation* untuk mengecek apakah '*My Favorite*' kosong atau tidak.
+    + ![Latihan 4 - App.js](https://i.ibb.co/j3Y1Wcv/lat4-appjs.png)
+
+### What I did not understand
+- [ ] 
