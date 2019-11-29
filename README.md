@@ -175,3 +175,54 @@ sebagai ilustrasi dari apa yang Anda jelaskan.
 
 ### What I did not understand
 - [ ] 
+
+## Tutorial 9
+### What I have learned today
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+    - Yang saya lakukan antara lain:
+        + Pertama, membuat fungsi `resetRestoranState()` yang berfungsi melakukan *reset* data yang disimpan dalam *state* yaitu nama, alamat, nomor telepon serta *rating*.
+            - ![Pertanyaan 1 - Fungsi `resetRestoranState()`](https://i.ibb.co/Y0LnVmV/pertanyaan-1-reset-Func.png)
+        + Setelah itu, menambahkan fungsi `resetRestoranState()` yang telah dibuat tadi ke dalam `addRestoranHandler()`.
+            - ![Pertanyaan 1 - Fungsi `addRestoranHandler()`](https://i.ibb.co/drJ62wH/pertanyaan-1-add-Reset-Func.png)
+    - Saya melakukan dengan cara ini karena secara logika, seharusnya data yang harus diisikan pada *Modal* untuk menambah restoran selalu kosong saat membuka *Modal*-nya. Maka dari itu, saya mendapat ide untuk melakukan *reset* dari *state* data yang disimpan dalam *state* menjadi kosong setiap kali tombol **_+ Add Restoran_** ditekan.
+2. Jelaskan fungsi dari async dan await!
+    - *Async* berfungsi untuk mendeklarasikan bahwa suatu fungsi merupakan fungsi *asynchronous*.
+    - *Await* digunakan dalam fungsi *asynchronous*, yang memaksa program menunggu sampai suatu proses *asynchronous* yang dilakukan telah selesai dikerjakan dan menghasilkan suatu kembalian (*return*).
+3. Masukkan jawaban dari TODO (Screenshot) pada Component Lifecycle pada pertanyaan ini.
+    - `Restoran.js`.
+        + ![Pertanyaan 3 - Restoran.js](https://i.ibb.co/nfB4CVZ/do-2-1.png)
+    - *Browser*, di *Inspect element* terdapat **_render()_** dan **_componentDidMount()_**, namun **_shouldComponentUpdate()_** tidak ada.
+        + ![Pertanyaan 3 - shouldComponentUpdate() belum muncul](https://i.ibb.co/YNQPn8v/do-2-2.png)
+    - Menambahkan *isLoading* pada *state* pada komponen **Restorans**.
+        + ![Pertanyaan 3 - isLoading](https://i.ibb.co/MRyjt5t/do-2-3.png)
+    - Menambahkan sebuah *handler* dan *button* untuk mengubah *isLoading* yang ada pada *state*.
+        + ![Pertanyaan 3 - Handler dan Button](https://i.ibb.co/Bz6wYk0/do-2-4.png)
+    - Membuka *browser* dan akan muncul sebuah *button* baru sesuai spesifikasi. Di *Inspect element* **_shouldComponentUpdate()_** kini hadir disana dan terlihat bahwa *value* dari *isLoading* berubah setiap di-klik.
+        + ![Pertanyaan 3 - shouldComponentUpdate() muncul](https://i.ibb.co/gPJTjdw/do-2-5.png)
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount. Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
+    - *componentDidMount*:
+        + Fungsi dipanggil setelah *Component* di-*mount*, atau setelah method *Render* dijalankan.
+        + Beberapa *use case* untuk *lifecycle method* ini:
+            - Menyambungkan aplikasi `React` dengan aplikasi eksternal, contohnya *web API*  atau *Javascript framework*.
+            - Menentukan *Timer* menggunakan *setTimeout* atau *setInterval*.
+            - Membuat *event listener*.
+    - *shouldComponentUpdate*:
+        + Fungsi dipanggil sebelum *Component* mengalami *re-render* setelah menerima *props* atau *state* baru.
+        + Biasa digunakan untuk mengecek suatu *Component* yang akan di-*update* untuk menentukan *Component* tersebut hanya di-*update* jika memenuhi kondisi tertentu. Hal ini dapat membantu mengurangi *re-rendering* yang tidak perlu.
+    - *componentDidUpdate*:
+        + Fungsi dipanggil setelah HTML yang di-*render* telah selesai di-*load*.
+        + Biasa digunakan salah satunya untuk melakukan interaksi dengan *non-React environment* seperti *Browser*, atau ingin melakukan *HTTP Request* (selama dalam penggunaanya membandingkan *props* saat ini dengan *props* sebelumnya untuk mencegah *network request* yang tidak perlu).
+    - *componentWillReceiveProps*:
+        + Fungsi dipanggil ketika *Component* akan menerima *props* baru, tetapi *Component* masih belum melakukan hal apapun terhadap *props* baru tersebut.
+        + Biasa digunakan untuk mengecek apakah suatu *state* perlu di-*update* berdasarkan perbandingan *props* baru dengan *props* sebelumnya.
+    - *componentWillUnmount*:
+        + Fungsi dipanggil tepat ketika sebelum *Component* dihapus dari DOM.
+        + Beberapa *use case* untuk *lifecycle method* ini:
+            - Melakukan *cleanup* yang perlu dilakukan, seperti memberhentikan penggunaan *timer* yang tidak diperlukan lagi.
+            - Membatalkan *network requests*. 
+            - Menghapus *event listeners*. 
+            - Membatalkan *subscription* yang dibuat pada fungsi *lifecycle method* __*componentDidMount*__.
+    - Sumber: [https://blog.pusher.com/beginners-guide-react-component-lifecycle/](https://blog.pusher.com/beginners-guide-react-component-lifecycle/).
+
+### What I did not understand
+- [ ] 
