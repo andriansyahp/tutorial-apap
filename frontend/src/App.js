@@ -9,15 +9,23 @@ export default class App extends React.Component {
     super(props);
     this.state={
       favItems: [],
-      favToggle: false
+      favToggle: false,
+      lightMode: true
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeTheme = this.handleChangeTheme.bind(this);
   }
 
   handleChange() {
     this.setState({
       favToggle: !this.state.favToggle
     })
+  }
+
+  handleChangeTheme() {
+    this.setState({
+      lightMode: !this.state.lightMode
+    });
   }
 
   handleItemClickMenu = item => {
@@ -46,12 +54,26 @@ export default class App extends React.Component {
     const { favItems } = this.state;
 
     return (
-      <div className="container-fluid">
+      <div 
+        className="container-fluid"
+        style={
+          this.state.lightMode 
+          ? {backgroundColor:"#333",color:"#FFF"}
+          : {backgroundColor:"#FFF",color:"#000"}
+        }
+      >
         <h1 className="text-center">
           Welcome!
           <small>Class-based</small>
         </h1>
         <div className="container pt-3">
+          <div className="float-right">
+            <label>Dark Mode</label>
+            <input
+              type="checkbox"
+              checked={this.state.lightMode}
+              onChange={this.handleChangeTheme} />
+          </div>
           <div className="float-right">
             <label>Show Favorites</label>
             <input
@@ -59,8 +81,16 @@ export default class App extends React.Component {
               checked={this.state.favToggle}
               onChange={this.handleChange} />
           </div>
-          <div className="row">
-            <div className="col-sm">
+          <div className="row" style={
+          this.state.lightMode 
+          ? {backgroundColor:"#333",color:"#FFF"}
+          : {backgroundColor:"#FFF",color:"#000"}
+        }>
+            <div className="col-sm" style={
+          this.state.lightMode 
+          ? {backgroundColor:"#333",color:"#FFF"}
+          : {backgroundColor:"#FFF",color:"#000"}
+        }>
               <List
                 title="Our Menu"
                 isFav = {false}
